@@ -1,3 +1,4 @@
+theme: jekyll-theme-minimal
 # Dean Izzo — Engineering Portfolio
 
 ## 👋 About Me
