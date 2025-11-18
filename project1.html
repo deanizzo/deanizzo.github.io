@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ping Pong Playing Robotic Arm</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f7f7f7; color: #222; }
+    header { background: #0a2540; color: white; padding: 30px 20px; text-align: center; }
+    header h1 { margin: 0; }
+    nav a { color:white; margin: 0 15px; text-decoration:none; }
+    section { max-width: 900px; margin: 40px auto; background:white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h2 { border-left: 5px solid #0a2540; padding-left: 10px; }
+    img { max-width: 100%; border-radius: 10px; margin: 10px 0; }
+    ul { line-height: 1.6; }
+    footer { background: #0a2540; color:white; text-align:center; padding:20px; margin-top:40px; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Ping Pong Playing Robotic Arm</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="project1.html">Project 1</a>
+      <a href="project2.html">Project 2</a>
+      <a href="project3.html">Project 3</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Project Overview</h2>
+    <p>
+      This project involved designing and implementing a robotic arm capable of detecting ping pong balls,
+      predicting their trajectories, and striking them in real time. The system integrates computer vision,
+      embedded control, kinematic modeling, and mechanical design.
+    </p>
+    <img src="images/robotic_arm.jpg" alt="Robotic Arm Photo" />
+  </section>
+
+  <section>
+    <h2>System Architecture</h2>
+    <p>The system is composed of the following major components:</p>
+    <ul>
+      <li><strong>Camera Module:</strong> Captures live video of the ping pong ball.</li>
+      <li><strong>OpenCV Processing:</strong> Detects the ball and extracts position updates.</li>
+      <li><strong>Trajectory Prediction:</strong> Fits a quadratic curve to estimate the ball's future position.</li>
+      <li><strong>Servo Control:</strong> Raspberry Pi sends PWM commands to the arm using a PCA9685 driver.</li>
+      <li><strong>Mechanical Arm:</strong> Custom 3–4 DOF design modeled and tested in CAD.</li>
+    </ul>
+
+    <img src="images/block_diagram.jpg" alt="Block Diagram" />
+  </section>
+
+  <section>
+    <h2>Computer Vision & Tracking</h2>
+    <p>
+      The ball was detected using color thresholding and motion filtering. A Kalman filter or simple moving
+      average can be optionally added to reduce noise.
+    </p>
+
+```python
+# Example OpenCV detection snippet
+mask = cv2.inRange(hsv, lower_orange, upper_orange)
+contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+```
+  </section>
+
+  <section>
+    <h2>Trajectory Modeling</h2>
+    <p>
+      Ball positions were recorded over several frames and fit to a quadratic model:
+    </p>
+
+```python
+# Fit quadratic curve y = ax^2 + bx + c
+coeffs = np.polyfit(x_positions, y_positions, 2)
+predicted_y = coeffs[0]*future_x**2 + coeffs[1]*future_x + coeffs[2]
+```
+
+    <p>
+      This model leverages projectile motion and works well for predicting the strike point.
+    </p>
+  </section>
+
+  <section>
+    <h2>Control System</h2>
+    <p>
+      Based on the predicted strike location, joint angles were computed using inverse kinematics and then
+      mapped to servo positions.
+    </p>
+
+```python
+# Example servo command
+pwm.set_pwm(servo_channel, 0, pulse_length)
+```
+
+    <p>
+      PID tuning was performed to minimize overshoot and ensure smooth motion.
+    </p>
+  </section>
+
+  <section>
+    <h2>Mechanical Design</h2>
+    <p>
+      The arm was designed in SolidWorks with attention to lightweight motion, stiffness, and servo torque
+      limitations. CAD renders can be added here.
+    </p>
+    <img src="images/cad_render.jpg" alt="CAD Render" />
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <ul>
+      <li>Accurate ball prediction within ~2–4 cm depending on speed.</li>
+      <li>Arm successfully returned multiple incoming balls.</li>
+      <li>Real-time performance maintained at ~25–30 FPS.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Future Work</h2>
+    <ul>
+      <li>Improve prediction with Kalman filtering.</li>
+      <li>Upgrade servos for higher speed and torque.</li>
+      <li>Add machine learning to classify ball spin.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© Your Name • Ping Pong Robotic Arm</p>
+  </footer>
+
+</body>
+</html>
