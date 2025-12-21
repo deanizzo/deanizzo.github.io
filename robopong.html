@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboPong</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        header h1 {
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        
+        .screenshot {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .feature h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-badge {
+            background: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .links {
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            margin-right: 1rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RoboPong</h1>
+        <p>Real-time ping pong playing robotic arm</p>
+    </header>
+
+    <div class="container">
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>For my senior capstone project, my team and I decided to build a robotic arm that can play ping pong against an opponent
+            in real time. We submitted our idea to the UW-Madison Borgen design competition where we won funding. The project is still
+            ongoing but I'm happy with the progress during our first semester.</p>
+            <img src="images/prometheus/dual_arms.png" alt="Project screenshot" class="screenshot">
+        </section>
+
+        <section id="tracking">
+            <h2>Ball Tracking</h2>
+            <p>There are a few elements to this project, the first one we wanted to tackle was ball tracking. Using a raspberry pi, a
+            pi camera, and openCV software, we created a script that can identify colors and create a mask as seen in the below image.</p>
+            <img src="images/prometheus/hsvmask.png" alt="hsv mask" class="screenshot">
+            <p>We then create a contour around this mask and store the center value to get the position of the ball. By running this script continuously,
+            we get a live feed of ball position in two dimensions.</p>
+            <img src="images/prometheus/contour.png" alt="contour" class="screenshot">
+            <p>As a proof of concept, we then hooked up the pi to a small servo motor and wrote a basic script to track the ball left and right.
+            We defined three areas within the camera, left, right, and center. Based on which region the ball falls into, the corresponding pwm
+            signal is sent to the servo. The video below shows the results, the servo tracks the ball in real time.</p>
+            <video autoplay loop muted playsinline class="video">
+              <source src="images/prometheus/proto1.mp4" type="video/mp4">
+            </video>
+        </section>
+
+        <section id="pinball">
+          <h2>Pinball Prototype</h2>
+          <p>We next wanted to make a 2D scaled-down version of this robot. We decided to model it based on a pinball design, with two bumpers
+          to hit tha ball back. By building out a platform, attaching two servo motors to the bumpers and a camera to the top frame looking down,
+          we were able to get a clean design that we presented as part of our capstone progress report.</p>
+          <video autoplay loop muted playsinline class="video">
+              <source src="images/prometheus/pinball.mp4" type="video/mp4">
+            </video>
+        </section>
+
+        <section id="tech">
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">HTML</span>
+                <span class="tech-badge">CSS</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">Node.js</span>
+            </div>
+        </section>
+
+        <section id="links">
+            <h2>Links</h2>
+            <div class="links">
+                <a href="#" class="btn">Live Demo</a>
+                <a href="#" class="btn">GitHub Repository</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>
