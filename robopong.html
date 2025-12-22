@@ -139,15 +139,15 @@
             <h2>Ball Tracking</h2>
             <p>There are a few elements to this project, the first one we wanted to tackle was ball tracking. Using a raspberry pi, a
             pi camera, and openCV software, we created a script that can identify colors and create a mask as seen in the below image.</p>
-            <img src="images/prometheus/hsvmask.png" alt="hsv mask" class="screenshot">
+            <img src="images/hsvmask.png" alt="hsv mask" class="screenshot">
             <p>We then create a contour around this mask and store the center value to get the position of the ball. By running this script continuously,
             we get a live feed of ball position in two dimensions.</p>
-            <img src="images/prometheus/contour.png" alt="contour" class="screenshot">
+            <img src="images/contour.png" alt="contour" class="screenshot">
             <p>As a proof of concept, we then hooked up the pi to a small servo motor and wrote a basic script to track the ball left and right.
             We defined three areas within the camera, left, right, and center. Based on which region the ball falls into, the corresponding pwm
             signal is sent to the servo. The video below shows the results, the servo tracks the ball in real time.</p>
             <video autoplay loop muted playsinline class="video">
-              <source src="images/prometheus/proto1.mp4" type="video/mp4">
+              <source src="images/proto1.mp4" type="video/mp4">
             </video>
         </section>
 
@@ -157,8 +157,24 @@
           to hit tha ball back. By building out a platform, attaching two servo motors to the bumpers and a camera to the top frame looking down,
           we were able to get a clean design that we presented as part of our capstone progress report.</p>
           <video autoplay loop muted playsinline class="video">
-              <source src="images/prometheus/pinball.mp4" type="video/mp4">
+              <source src="images/pinball.mp4" type="video/mp4">
+          </video>
+        </section>
+
+        <section id="prototype">
+            <h2>3D Prototype</h2>
+            <p>The next step was to implement two cameras to capture position data in 3D. The below image shows the two camera system feed
+            as I hold a ball between them. I wrote an algorithm that talkes in the pixel values from each camera, and maps them to a physical
+            3D position.</p>
+            <img src="images/twocamerafeed.png" alt="two camera feed" class="screenshot">
+            <p>We then built two robotic arms made from servos and 3D printed parts. This arms each have two degrees of freedom and thus
+            can move to any location within a 2D plane. By combining the camera position script with an inverse kinemtics script, we were
+            able to get the arms to follow the ball. The next steps are to implement a trajectory program to predict ball position while
+            it follows a parabola.</p>
+            <video autoplay loop muted playsinline class="video">
+              <source src="images/proto3.mp4" type="video/mp4">
             </video>
+            <img src="images/block_diagram.png" alt="two camera feed" class="screenshot">
         </section>
 
         <section id="tech">
