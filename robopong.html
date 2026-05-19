@@ -339,10 +339,25 @@
         }
         
         /* Rotated vertical video */
+        .rotated-wrapper {
+            width: 320px;
+            height: 570px;
+        
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+            overflow: hidden;
+        }
+        
         .rotated-video {
-            width: 400px !important;
+            width: 570px;
+            height: 320px;
+        
             transform: rotate(-90deg);
-            margin: 120px 0; /* gives space for rotation */
+        
+            border-radius: 16px;
+            background: black;
         }
         
         .media-caption {
@@ -662,7 +677,7 @@
         <div class="media-block">
 
             <!-- VIDEO 1 -->
-            <div class="video-card">
+            <div class="rotated-wrapper">
                 <video autoplay loop muted playsinline controls class="rotated-video">
                     <source src="images/live_demo.mp4" type="video/mp4">
                 </video>
