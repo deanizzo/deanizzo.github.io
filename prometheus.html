@@ -280,9 +280,9 @@
         <section id="overview">
             <h2>Overview</h2>
             <p>Prometheus is an NREL research project to optimize the performance of a solar power tower energy plant. This
-            type of plant generates energy by using a field of mirrors to direct sunlight up to a central reciever. The driving
-            problem is how to aim these heliostats to balance power output and reciever lifetime. My work involves modeling the
-            the plant using Pyton and C++ to better understand its performance.</p>
+            type of plant generates energy by using a field of mirrors to direct sunlight up to a central receiver. The driving
+            problem is how to aim these heliostats to balance power output and receiver lifetime. My work involves modeling the
+            the plant using Python and C++ to better understand its performance.</p>
         </section>
 
         <section id="demo">
@@ -292,12 +292,12 @@
             </video>
             <p>The above animation shows the results of simulating a cloud passing over a heliostat field, affecting the total flux.
             I created this simulation using the solarPILOT api and writing my own script to impose cloud conditions. We represent the
-            cloud first with a binary matrix which is then converted into a coordinate map through user input shifting and scaling values.
-            Each heliostat is mapped to this coordinate system to determine wheather it is being shaded or not. If a heliostat is shaded, it's
+            cloud first with a binary matrix, which is then converted into a coordinate map through user input shifting and scaling values.
+            Each heliostat is mapped to this coordinate system to determine weather it is being shaded or not. If a heliostat is shaded, it's
             "soiling value" is modified through the api and its flux contribution is recalculated to reflect lower irradiance. By doing this
-            for every heliostat, we get a realistic image of flux on the reciever when a cloud is blocking sunlight. We can then create a
+            for every heliostat, we get a realistic image of flux on the receiver when a cloud is blocking sunlight. We can then create a
             time step by shifting the mask coordinate system over by a user specified "wind value", updating solar position in the api, and
-            resimulating while storing data at each iteration. The final result is an animation of reciever flux over time as a cloud
+            resimulating while storing data at each iteration. The final result is an animation of receiver flux over time as a cloud
             passes over the field, which is the animation pictured above.</p>
         </section>
 
@@ -484,11 +484,7 @@
                     \]
                 </div>
 
-                <div class="figure-placeholder">
-                    <span>📊</span>
-                    <em>Figure: Target flux vs. optimized flux with aimpoints</em><br>
-                    <small>(optimized_aimpoints.png)</small>
-                </div>
+                <img class="screenshot" src="images/optimized_aimpoints.png" alt="Target flux vs. optimized flux with aimpoints">
             </div>
 
             <!-- Step 4 -->
@@ -501,11 +497,7 @@
                     would not be needed in a deployed real-time system.
                 </p>
 
-                <div class="figure-placeholder">
-                    <span>🔬</span>
-                    <em>Figure: Raytraced simulation result with optimized aimpoints</em><br>
-                    <small>(raytraced.png)</small>
-                </div>
+                <img class="screenshot" src="images/raytraced.png" alt="Target flux vs. optimized flux with aimpoints">
 
                 <div class="result-note">
                     <span class="icon">✅</span>
