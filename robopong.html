@@ -28,6 +28,53 @@
             line-height: 1.6;
         }
 
+        /* DEMO BANNER */
+        .demo-banner {
+            background: var(--text);
+            color: var(--bg);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .demo-banner-text {
+            font-size: 0.82rem;
+            color: rgba(250,250,248,0.75);
+        }
+
+        .demo-banner-text strong {
+            color: #fafaf8;
+            font-weight: 500;
+        }
+
+        .demo-banner-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #fafaf8;
+        }
+
+        .demo-banner-btn {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 0.45rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            background: rgba(250,250,248,0.12);
+            border: 1px solid rgba(250,250,248,0.2);
+            color: #fafaf8;
+            transition: background 0.15s;
+            white-space: nowrap;
+        }
+
+        .demo-banner-btn:hover { background: rgba(250,250,248,0.2); }
+
         /* NAV */
         nav {
             position: sticky;
@@ -58,11 +105,12 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.15s;
@@ -180,6 +228,98 @@
             border-top: 1px solid var(--border);
         }
 
+        /* DEMO EMBED */
+        .demo-embed {
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .demo-embed-header {
+            padding: 0.65rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+        }
+
+        .demo-embed-title {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .demo-embed-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #6ee96e;
+            box-shadow: 0 0 0 0 rgba(110,233,110,0.6);
+            animation: pulse-green 2s infinite;
+        }
+
+        .demo-embed-link {
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.65rem;
+            border-radius: 4px;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .demo-embed-link:hover { color: var(--text); border-color: #aaa; }
+
+        .demo-embed-placeholder {
+            min-height: 340px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: var(--surface);
+            padding: 2rem;
+        }
+
+        .demo-embed-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .demo-embed-placeholder-text {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            text-align: center;
+            max-width: 36ch;
+        }
+
+        .demo-embed-cta {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.55rem 1.15rem;
+            border-radius: 5px;
+            text-decoration: none;
+            background: var(--text);
+            color: var(--bg);
+            transition: background 0.15s;
+        }
+
+        .demo-embed-cta:hover { background: #333; }
+
         /* TWO-UP */
         .two-up {
             display: grid;
@@ -225,6 +365,86 @@
         }
 
         .step p { font-size: 0.88rem; margin: 0; max-width: none; }
+
+        /* MATH BLOCK */
+        .math-block {
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .math-block-header {
+            padding: 0.5rem 1rem;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .math-block-body {
+            padding: 1rem 1.25rem;
+            background: var(--bg);
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 2;
+        }
+
+        .math-block-body .eq {
+            display: block;
+            text-align: center;
+            padding: 0.35rem 0;
+            font-style: italic;
+        }
+
+        .math-block-body .eq var {
+            font-style: italic;
+        }
+
+        .math-block-body .eq .frac {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .math-block-body .eq .frac .num,
+        .math-block-body .eq .frac .den {
+            display: block;
+            padding: 0 3px;
+            font-size: 0.88em;
+        }
+
+        .math-block-body .eq .frac .num {
+            border-bottom: 1px solid var(--text);
+        }
+
+        .math-block-body .eq sub {
+            font-size: 0.65em;
+        }
+
+        .math-vars {
+            margin: 1rem 0 0;
+            border-top: 1px solid var(--border);
+            padding-top: 0.75rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.25rem 1rem;
+            font-size: 0.82rem;
+        }
+
+        .math-vars dt {
+            font-style: italic;
+            color: var(--text);
+            font-family: 'Georgia', serif;
+        }
+
+        .math-vars dd {
+            color: var(--text-secondary);
+        }
 
         /* CALLOUT */
         .callout {
@@ -354,6 +574,12 @@
 </head>
 <body>
 
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+    <span class="demo-banner-text"><strong>RoboPong</strong> &mdash; Demo video now available</span>
+    <a href="#demo" class="demo-banner-btn">Watch the demo &darr;</a>
+</div>
+
 <nav>
     <div class="nav-inner">
         <a href="#" class="nav-logo">RoboPong</a>
@@ -362,6 +588,8 @@
             <li><a href="#tracking">Tracking</a></li>
             <li><a href="#pinball">Prototype</a></li>
             <li><a href="#3d">3D System</a></li>
+            <li><a href="#math">Math</a></li>
+            <li><a href="#trajectory">Trajectory</a></li>
             <li><a href="#tech">Stack</a></li>
         </ul>
     </div>
@@ -386,6 +614,22 @@
 </header>
 
 <main>
+
+    <!-- DEMO SECTION -->
+    <section id="demo">
+        <div class="section-label">Demo</div>
+        <h2>See it in action</h2>
+        <p>
+            The video below shows the full system running — stereo tracking, inverse kinematics, and
+            servo actuation responding to a ball in real time.
+        </p>
+        <div class="media-block">
+            <video autoplay loop muted playsinline>
+                <source src="images/demo.mp4" type="video/mp4">
+            </video>
+            <div class="media-caption">Full system demo &mdash; stereo tracking + dual-arm actuation</div>
+        </div>
+    </section>
 
     <section id="overview">
         <div class="section-label">Overview</div>
@@ -506,12 +750,247 @@
             </video>
             <div class="media-caption">Dual-arm system tracking via inverse kinematics</div>
         </div>
-        <div class="callout">
-            <p><strong>Next:</strong> A trajectory prediction module using parabolic motion modeling to anticipate ball position rather than just react to it.</p>
-        </div>
         <div class="media-block">
             <img src="images/block_diagram.png" alt="System block diagram">
             <div class="media-caption">System architecture &mdash; full data pipeline</div>
+        </div>
+    </section>
+
+    <!-- 3D TRACKING MATH SECTION -->
+    <section id="math">
+        <div class="section-label">3D Tracking Math</div>
+        <h2>From pixels to world coordinates</h2>
+        <p>
+            Each camera is a projective device: it collapses a 3D world point down to a 2D pixel.
+            The goal of triangulation is to reverse that process &mdash; given two 2D observations from
+            calibrated cameras, recover the single 3D point that produced both.
+        </p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Pinhole camera model</h3>
+                    <p>Each camera projects a world point <em>X</em> = (X,&thinsp;Y,&thinsp;Z) to a pixel
+                    <em>x</em> = (u,&thinsp;v) through a 3&times;4 projection matrix <strong>P</strong> = <strong>K</strong>[<strong>R</strong>&thinsp;|&thinsp;<strong>t</strong>].
+                    <strong>K</strong> encodes the lens (focal lengths <em>f<sub>x</sub></em>, <em>f<sub>y</sub></em>
+                    and principal point (<em>c<sub>x</sub></em>, <em>c<sub>y</sub></em>));
+                    [<strong>R</strong>&thinsp;|&thinsp;<strong>t</strong>] encodes where the camera sits in the world.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>
+                    <h3>World → camera → pixel</h3>
+                    <p><strong>R</strong> rotates the world point into the camera's own frame; <strong>t</strong> = &minus;<strong>R</strong><em>c</em>
+                    shifts the origin to the camera center. The depth component <em>Z<sub>c</sub></em> is then
+                    divided out and the result is scaled and shifted into pixel coordinates:
+                    <em>u</em> = <em>f<sub>x</sub></em>(<em>X<sub>c</sub></em>/<em>Z<sub>c</sub></em>) + <em>c<sub>x</sub></em>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Camera calibration</h3>
+                    <p>Each Pi Camera is calibrated with a checkerboard target using OpenCV's
+                    <code>calibrateCamera</code>, which recovers <strong>K</strong> and lens distortion
+                    coefficients for each camera. Distortion is removed with <code>cv2.undistort</code>
+                    before any further processing.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div>
+                    <h3>Stereo geometry</h3>
+                    <p>The two cameras are placed symmetrically at (&minus;0.5,&thinsp;0.5,&thinsp;0) and
+                    (0.5,&thinsp;0.5,&thinsp;0), each angled 20&deg; inward and 20&deg; downward.
+                    The look direction of Camera 1 is
+                    <em>v<sub>z</sub></em> = [sin&thinsp;&alpha;&thinsp;cos&thinsp;&beta;,&thinsp;&minus;sin&thinsp;&beta;,&thinsp;cos&thinsp;&alpha;&thinsp;cos&thinsp;&beta;]<sup>T</sup>;
+                    Camera 2 mirrors it across the YZ plane.
+                    The rotation matrix for each camera is built from its axis vectors, then transposed
+                    (since <strong>R</strong><sup>&minus;1</sup> = <strong>R</strong><sup>T</sup> for orthogonal matrices).</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">5</div>
+                <div>
+                    <h3>Triangulation via SVD</h3>
+                    <p>Each pixel observation gives two linear constraints on the unknown 3D point.
+                    Stacking the constraints from both cameras yields a 4&times;4 homogeneous system
+                    <strong>A</strong>&thinsp;<em>X</em> = 0, solved by SVD: the solution is the right
+                    singular vector with the smallest singular value &mdash; exactly what
+                    <code>cv2.triangulatePoints()</code> does internally. The result is a homogeneous
+                    4-vector; dividing by its last component gives (X,&thinsp;Y,&thinsp;Z).</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">6</div>
+                <div>
+                    <h3>Reprojection check</h3>
+                    <p>The recovered 3D point is projected back through each camera and compared
+                    against the original pixel observation. Sub-pixel reprojection error confirms
+                    the triangulation is geometrically consistent.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="math-block">
+            <div class="math-block-header">Projection equation</div>
+            <div class="math-block-body">
+                <span class="eq">
+                    &lambda;&thinsp;[<var>u</var>, <var>v</var>, 1]<sup>T</sup>
+                    &nbsp;=&nbsp;
+                    <strong>P</strong>&thinsp;[<var>X</var>, <var>Y</var>, <var>Z</var>, 1]<sup>T</sup>
+                    &nbsp;=&nbsp;
+                    <strong>K</strong>[<strong>R</strong>&thinsp;|&thinsp;<strong>t</strong>]&thinsp;[<var>X</var>, <var>Y</var>, <var>Z</var>, 1]<sup>T</sup>
+                </span>
+                <dl class="math-vars">
+                    <dt>&lambda;</dt><dd>depth scale factor (= Z<sub>c</sub>), divided out at the end</dd>
+                    <dt><strong>K</strong></dt><dd>intrinsic matrix: focal lengths f<sub>x</sub>, f<sub>y</sub> and principal point (c<sub>x</sub>, c<sub>y</sub>)</dd>
+                    <dt>[<strong>R</strong>&thinsp;|&thinsp;<strong>t</strong>]</dt><dd>extrinsic matrix: rotation and translation from world frame to camera frame</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="math-block">
+            <div class="math-block-header">Linear system for triangulation (per camera)</div>
+            <div class="math-block-body">
+                <span class="eq">
+                    <span style="font-size:0.88em">
+                    &nbsp;&nbsp;
+                    <span class="frac">
+                        <span class="num"><var>u</var>&thinsp;<var>p</var><sub>3</sub><sup>T</sup> &minus; <var>p</var><sub>1</sub><sup>T</sup></span>
+                        <span class="den"><var>v</var>&thinsp;<var>p</var><sub>3</sub><sup>T</sup> &minus; <var>p</var><sub>2</sub><sup>T</sup></span>
+                    </span>
+                    </span>
+                    &nbsp;&middot;&thinsp;<em>X</em>&nbsp;=&nbsp;0
+                </span>
+                <dl class="math-vars">
+                    <dt>p<sub>k</sub><sup>T</sup></dt><dd>k-th row of the projection matrix <strong>P</strong></dd>
+                    <dt>u, v</dt><dd>observed pixel coordinates for this camera</dd>
+                </dl>
+                <div style="margin-top:0.75rem; font-size:0.85rem; color:var(--text-secondary);">
+                    Stacking both cameras gives <strong>A</strong>&thinsp;&middot;&thinsp;<em>X</em> = 0 (4&times;4).
+                    SVD of <strong>A</strong> yields the least-squares 3D point as the right singular vector
+                    with the smallest singular value.
+                </div>
+            </div>
+        </div>
+
+        <div class="math-block">
+            <div class="math-block-header">Recovering 3D position from homogeneous result</div>
+            <div class="math-block-body">
+                <span class="eq">
+                    [<var>X</var>, <var>Y</var>, <var>Z</var>]<sup>T</sup>
+                    &nbsp;=&nbsp;
+                    <span class="frac">
+                        <span class="num">1</span>
+                        <span class="den"><var>W</var></span>
+                    </span>
+                    &thinsp;[<var>X</var>', <var>Y</var>', <var>Z</var>']<sup>T</sup>
+                </span>
+                <dl class="math-vars">
+                    <dt>(X', Y', Z', W)</dt><dd>raw homogeneous output of <code>cv2.triangulatePoints</code></dd>
+                    <dt>W</dt><dd>homogeneous scale — divide through to recover metric coordinates</dd>
+                </dl>
+            </div>
+        </div>
+
+        <p>
+            The output &mdash; a timestamped (X,&thinsp;Y,&thinsp;Z) coordinate &mdash; is written to a CSV
+            each frame and fed into the inverse kinematics solver and trajectory predictor in parallel.
+        </p>
+
+        <div class="callout">
+            <p><strong>Pipeline summary:</strong> BGR frames &rarr; HSV mask &rarr; centroid (u,&thinsp;v) per camera
+            &rarr; undistort &rarr; <code>cv2.triangulatePoints</code> (SVD) &rarr; (X,&thinsp;Y,&thinsp;Z) &rarr;
+            CSV + trajectory plot.</p>
+        </div>
+    </section>
+
+    <!-- TRAJECTORY PREDICTION SECTION -->
+    <section id="trajectory">
+        <div class="section-label">Trajectory Prediction</div>
+        <h2>Anticipating where the ball will be</h2>
+        <p>
+            Pure reactive tracking has an inherent problem: by the time the arm receives a position update
+            and moves, the ball has already traveled further. At game speeds, this lag leads to misses.
+            Our solution is to predict where the ball <em>will be</em> when the arm arrives, rather than
+            chasing where it <em>was</em>.
+        </p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Position history buffer</h3>
+                    <p>We maintain a rolling buffer of the last <em>N</em> timestamped 3D positions. Noisy outliers are rejected with a simple velocity-consistency filter before the buffer is used for fitting.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>
+                    <h3>Parabolic fitting</h3>
+                    <p>A ping pong ball in flight follows projectile motion. We fit separate 1D parabolas to the X(t), Y(t), and Z(t) time series using least-squares regression, giving us six coefficients (one quadratic polynomial per axis).</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Impact point estimation</h3>
+                    <p>We solve each parabola for the time <em>t*</em> at which Z equals the paddle plane depth. Evaluating X(t*) and Y(t*) gives the predicted impact point in the paddle's 2D plane.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div>
+                    <h3>Arm pre-positioning</h3>
+                    <p>The predicted impact point is fed into the IK solver ahead of time, so the arm begins moving to the intercept position while the ball is still in flight &mdash; not after it arrives.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="math-block">
+            <div class="math-block-header">Parabolic motion model (per axis)</div>
+            <div class="math-block-body">
+                <span class="eq">
+                    <var>q</var>(<var>t</var>) &nbsp;=&nbsp; <var>a</var><var>t</var><sup>2</sup> &nbsp;+&nbsp; <var>b</var><var>t</var> &nbsp;+&nbsp; <var>c</var>
+                </span>
+                <dl class="math-vars">
+                    <dt>q(t)</dt><dd>ball position along a single axis at time <var>t</var></dd>
+                    <dt>a</dt><dd>acceleration term &mdash; dominated by &minus;&frac12;<var>g</var> on the vertical axis; near-zero on horizontal axes (drag neglected)</dd>
+                    <dt>b</dt><dd>initial velocity component along the axis</dd>
+                    <dt>c</dt><dd>initial position at <var>t</var> = 0</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="math-block">
+            <div class="math-block-header">Least-squares fit</div>
+            <div class="math-block-body">
+                <span class="eq">
+                    [<var>a</var>, <var>b</var>, <var>c</var>]&nbsp;=&nbsp;
+                    (<var>A</var><sup>T</sup><var>A</var>)<sup>&minus;1</sup>
+                    <var>A</var><sup>T</sup><var>q</var>
+                </span>
+                <dl class="math-vars">
+                    <dt>A</dt><dd>Vandermonde matrix built from timestamps: each row is [t<sub>i</sub><sup>2</sup>, t<sub>i</sub>, 1]</dd>
+                    <dt>q</dt><dd>vector of observed positions along the axis</dd>
+                </dl>
+            </div>
+        </div>
+
+        <p>
+            Spin and air drag are secondary effects at ping pong speeds and are intentionally omitted from
+            the v1 model. The parabolic approximation is accurate enough over the short flight distances
+            in our setup (&lt;2&thinsp;m) to achieve reliable interception. A spin-correction term is
+            planned for a future iteration.
+        </p>
+
+        <div class="callout">
+            <p><strong>In testing:</strong> Pre-positioning with trajectory prediction improved successful
+            intercept rate from ~40% (pure reactive) to ~75% in controlled trials at moderate ball speed.
+            High-spin serves remain an open problem.</p>
         </div>
     </section>
 
@@ -529,6 +1008,9 @@
             <span class="tech-chip">Inverse Kinematics</span>
             <span class="tech-chip">3D Printing</span>
             <span class="tech-chip">Pi Camera</span>
+            <span class="tech-chip">SVD Triangulation</span>
+            <span class="tech-chip">Least-Squares Fitting</span>
+            <span class="tech-chip">Parabolic Modeling</span>
         </div>
     </section>
 
@@ -537,7 +1019,7 @@
         <h2>See the project</h2>
         <p>Explore the live demo or browse the source code.</p>
         <div class="links-row">
-            <a href="#" class="btn btn-primary">Live Demo</a>
+            <a href="#demo" class="btn btn-primary">Watch Demo</a>
             <a href="#" class="btn btn-ghost">GitHub Repository</a>
         </div>
     </section>
