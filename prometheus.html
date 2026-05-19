@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prometheus</title>
     <link rel="stylesheet" href="style.css">
+    <!-- MathJax for rendering LaTeX equations -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         * {
             margin: 0;
@@ -119,6 +121,153 @@
             padding: 1.5rem;
             margin-top: 3rem;
         }
+
+        /* ── Analytical Optimization Section ── */
+
+        .method-intro {
+            background: #f0f7ff;
+            border-left: 4px solid #3498db;
+            padding: 1rem 1.25rem;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 1.5rem;
+            font-size: 0.97rem;
+            color: #2c3e50;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .step-card {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 1.25rem;
+            border-top: 3px solid #3498db;
+        }
+
+        .step-card .step-number {
+            font-size: 0.78rem;
+            font-weight: bold;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #3498db;
+            margin-bottom: 0.3rem;
+        }
+
+        .step-card h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.97rem;
+        }
+
+        .step-card p {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .method-subsection {
+            margin-top: 2rem;
+        }
+
+        .method-subsection h3 {
+            color: #2c3e50;
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #dde;
+        }
+
+        .equation-block {
+            background: #fafafa;
+            border: 1px solid #e0e6ef;
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            margin: 0.75rem 0;
+            overflow-x: auto;
+        }
+
+        .equation-label {
+            font-size: 0.78rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.4rem;
+        }
+
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.75rem 0 1rem;
+            font-size: 0.9rem;
+        }
+
+        .params-table th {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            background: #2c3e50;
+            color: white;
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+        }
+
+        .params-table td {
+            padding: 0.45rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .params-table tr:nth-child(even) td {
+            background: #f6f8fb;
+        }
+
+        .params-table code {
+            font-family: 'Courier New', monospace;
+            background: #eef2f7;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        .result-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: #eaf6ee;
+            border: 1px solid #b2dfc0;
+            border-radius: 6px;
+            padding: 0.9rem 1.1rem;
+            margin-top: 1.25rem;
+            font-size: 0.92rem;
+            color: #2a5c38;
+        }
+
+        .result-note .icon {
+            font-size: 1.2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .figure-placeholder {
+            background: #f0f4f8;
+            border: 1px dashed #b0bec5;
+            border-radius: 6px;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #78909c;
+            font-size: 0.88rem;
+            margin: 1rem 0;
+        }
+
+        .figure-placeholder span {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+        }
     </style>
 </head>
 <body>
@@ -151,6 +300,223 @@
             resimulating while storing data at each iteration. The final result is an animation of reciever flux over time as a cloud
             passes over the field, which is the animation pictured above.</p>
         </section>
+
+        <!-- ══════════════════════════════════════════════════════
+             NEW SECTION: Analytical Aimpoint Optimization
+        ═══════════════════════════════════════════════════════ -->
+        <section id="analytical-optimization">
+            <h2>Analytical Aimpoint Optimization</h2>
+
+            <div class="method-intro">
+                Traditional aimpoint optimization relies on iterative raytracing, whose computational cost scales exponentially
+                with field size — too slow for real-time control. This work introduces an analytical method that abstracts each
+                heliostat image as a 2D Gaussian, forming a closed-form optimization problem that is orders of magnitude faster
+                and suitable for real-time deployment.
+            </div>
+
+            <!-- Pipeline overview cards -->
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">Step 1</div>
+                    <h4>Generate Heliostat Characteristics</h4>
+                    <p>Use the SolarPILOT API with a Hermite approximation to efficiently extract image parameters for every heliostat in the field.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">Step 2</div>
+                    <h4>Approximate Images with 2D Gaussians</h4>
+                    <p>Model each heliostat's flux footprint as a 2D Gaussian and project it onto the cylindrical receiver analytically.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">Step 3</div>
+                    <h4>Gradient-Descent Optimization</h4>
+                    <p>Minimize the difference between the total flux and a target profile by solving for optimal aimpoint offsets.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">Step 4</div>
+                    <h4>Raytrace Verification</h4>
+                    <p>Validate optimized aimpoints by running a full SolTrace raytracing simulation and comparing against the target flux.</p>
+                </div>
+            </div>
+
+            <!-- Background -->
+            <div class="method-subsection">
+                <h3>Background</h3>
+                <p>
+                    A solar power tower system concentrates sunlight from a large heliostat field onto a central receiver.
+                    Each heliostat's aimpoint is controlled by motors adjusting its azimuth and zenith angle.
+                    Flux concentration must be carefully managed — excessively high flux can damage the receiver and reduce its operational lifetime.
+                    Because sun position, cloud cover, and dust accumulation change continuously, aimpoints must be updated in real time,
+                    which existing raytracing-based methods cannot support at scale.
+                </p>
+            </div>
+
+            <!-- Coordinate System -->
+            <div class="method-subsection">
+                <h3>Coordinate System</h3>
+                <p>
+                    Two coordinate frames are used. The <strong>world frame</strong> \([x^w, y^w, z^w]\) has its origin on the ground
+                    directly beneath the receiver, with \(x^w\) pointing east, \(y^w\) north, and \(z^w\) upward.
+                    The <strong>receiver frame</strong> \([x, y]\) is obtained by unwrapping the cylindrical receiver, with the origin
+                    at the bottom-northmost point; \(x\) follows the circumference north-to-east and \(y\) points toward the top.
+                    Aimpoint optimization is performed entirely in the 2D receiver frame.
+                </p>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="method-subsection">
+                <h3>Step 1 — Generating Heliostat Characteristics</h3>
+                <p>
+                    Field-level constants (tower height, receiver dimensions, rated power) are set first.
+                    The SolarPILOT API then generates the field geometry and runs a single Hermite-approximation simulation
+                    to extract per-heliostat parameters cheaply — far less computation than raytracing.
+                </p>
+
+                <table class="params-table">
+                    <thead>
+                        <tr><th>Symbol</th><th>Description</th><th>Units</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>\(N\)</td><td>Number of heliostats in the field</td><td>—</td></tr>
+                        <tr><td>\(h_t\)</td><td>Tower height</td><td>m</td></tr>
+                        <tr><td>\(r\)</td><td>Receiver radius</td><td>m</td></tr>
+                        <tr><td>\(h\)</td><td>Receiver height</td><td>m</td></tr>
+                        <tr><td>\(A_i\)</td><td>Peak flux amplitude of heliostat \(i\)</td><td>W</td></tr>
+                        <tr><td>\((\sigma_x, \sigma_y)_i\)</td><td>Image size (standard deviations) of heliostat \(i\)</td><td>m</td></tr>
+                        <tr><td>\((x^*, y^*)_i\)</td><td>Normal aimpoint of heliostat \(i\) in receiver coordinates</td><td>m</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="method-subsection">
+                <h3>Step 2 — Approximating Images with 2D Gaussians</h3>
+                <p>
+                    Each heliostat's flux footprint on a flat plane normal to its aimpoint is modeled as a 2D Gaussian:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Flat-plane image</div>
+                    \[
+                        f_i(x,y) = A_i \exp\!\left(-\tfrac{1}{2}\left[\frac{(x - x^*_i)^2}{\sigma_{x,i}^2} + \frac{(y - y^*_i)^2}{\sigma_{y,i}^2}\right]\right)
+                    \]
+                </div>
+                <p>
+                    To steer a heliostat away from its normal aimpoint, we define an offset \((a_i, b_i)\) in the \(x\) and \(y\) receiver
+                    directions:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Aimpoint offset</div>
+                    \[
+                        (a, b)_i = (x_\text{aim} - x^*,\; y_\text{aim} - y^*)_i
+                    \]
+                </div>
+                <p>
+                    Projecting onto a cylindrical receiver requires two helper functions.
+                    The <em>argument function</em> maps a flat-plane \(x\)-displacement to the curved surface:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Argument function</div>
+                    \[
+                        \text{arg}(\Delta x) = r\arcsin\!\left(\frac{\Delta x}{r}\right)
+                    \]
+                </div>
+                <p>
+                    The <em>modifier function</em> captures the flux attenuation due to receiver curvature:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Curvature modifier</div>
+                    \[
+                        \gamma(\Delta x) = \begin{cases}
+                            \dfrac{\Delta x}{\sqrt{r^2 - \Delta x^2}}, & |\Delta x| < r \\[6pt]
+                            \infty, & |\Delta x| \ge r
+                        \end{cases}
+                    \]
+                </div>
+                <p>
+                    Combining these, the projected image of heliostat \(i\) as a function of its aimpoint offset is:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Projected heliostat image</div>
+                    \[
+                        g_i(x,y) = \frac{f_i\!\left(\text{arg}(x - a_i),\; y - b_i\right)}{\gamma\!\left(\text{arg}(x - x^*_i)\right)}
+                    \]
+                </div>
+                <p>
+                    The total flux on the receiver is the superposition over all heliostats:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Total receiver flux</div>
+                    \[
+                        g(x,y) = \sum_{i=1}^{N} g_i(x,y)
+                    \]
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="method-subsection">
+                <h3>Step 3 — Gradient-Descent Aimpoint Optimization</h3>
+                <p>
+                    Given a target flux profile \(t(x,y)\), we minimize the normalized residual between \(g\) and \(t\)
+                    using gradient descent. The loss function is:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Normalized loss</div>
+                    \[
+                        \phi = \frac{1}{N}\left\|\frac{g(x,y) - t(x,y)}{\max(t) - \min(t)}\right\|
+                    \]
+                </div>
+                <p>
+                    The descent direction is determined by partial derivatives with respect to each aimpoint offset:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Gradient vector</div>
+                    \[
+                        \Delta\phi = \begin{bmatrix} \dfrac{\partial\phi}{\partial a} & \dfrac{\partial\phi}{\partial b} \end{bmatrix}^{\!\top}
+                    \]
+                </div>
+                <p>
+                    The \(2N\) design variables are the offsets \((a_i, b_i)\) for each heliostat, constrained so that every aimpoint
+                    remains on the receiver surface:
+                </p>
+                <div class="equation-block">
+                    <div class="equation-label">Constraint set</div>
+                    \[
+                        (a, b) \in \left[-\tfrac{\pi}{2}r,\; \tfrac{\pi}{2}r\right] \times [0,\; h]
+                    \]
+                </div>
+
+                <div class="figure-placeholder">
+                    <span>📊</span>
+                    <em>Figure: Target flux vs. optimized flux with aimpoints</em><br>
+                    <small>(optimized_aimpoints.png)</small>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="method-subsection">
+                <h3>Step 4 — Verification via Raytracing</h3>
+                <p>
+                    To confirm correctness, the optimized offsets are fed back into SolarPILOT: each heliostat's aimpoint is updated
+                    to \((x^*_i + a_i,\; y^*_i + b_i)\) and a full SolTrace raytracing simulation is run. The resulting flux
+                    distribution is compared against the target profile. This step is used only for method validation and
+                    would not be needed in a deployed real-time system.
+                </p>
+
+                <div class="figure-placeholder">
+                    <span>🔬</span>
+                    <em>Figure: Raytraced simulation result with optimized aimpoints</em><br>
+                    <small>(raytraced.png)</small>
+                </div>
+
+                <div class="result-note">
+                    <span class="icon">✅</span>
+                    <div>
+                        By replacing raytracing with a closed-form Gaussian model, this method achieves real-time aimpoint
+                        optimization at scale — something previously infeasible for large heliostat fields.
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ══════════════════════════════════════════════════════ -->
 
         <section id="tech">
             <h2>Technologies Used</h2>
