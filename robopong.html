@@ -619,20 +619,38 @@
     <!-- DEMO SECTION -->
     <section id="demo">
         <div class="section-label">Demo</div>
+
         <h2>See it in action</h2>
+
         <p>
-            The video below shows the full system running — stereo tracking, inverse kinematics, and
-            servo actuation responding to a ball in real time.
+            The video below shows the full system running — stereo tracking,
+            inverse kinematics, and servo actuation responding to a ball in real time.
         </p>
+
         <div class="media-block">
-            <video autoplay loop muted playsinline controls style="transform: rotate(-90deg); width: 500px;">
-                <source src="images/live_demo.mp4" type="video/mp4">
-            </video>
-            <div class="media-caption">Full system demo &mdash; stereo tracking + dual-arm actuation</div>
-            <video autoplay loop muted playsinline>
-                <source src="images/live_demo2.mp4" type="video/mp4">
-            </video>
-            <div class="media-caption">Full system demo alternarive angle&mdash; stereo tracking + dual-arm actuation</div>
+
+            <!-- VIDEO 1 -->
+            <div class="video-card">
+                <video autoplay loop muted playsinline controls class="rotated-video">
+                    <source src="images/live_demo.mp4" type="video/mp4">
+                </video>
+
+                <div class="media-caption">
+                    Full system demo — stereo tracking + dual-arm actuation
+                </div>
+            </div>
+
+            <!-- VIDEO 2 -->
+            <div class="video-card">
+                <video autoplay loop muted playsinline controls>
+                    <source src="images/live_demo2.mp4" type="video/mp4">
+                </video>
+    
+                <div class="media-caption">
+                    Alternative angle — stereo tracking + dual-arm actuation
+                </div>
+            </div>
+    
         </div>
     </section>
 
