@@ -340,21 +340,23 @@
         
         /* Rotated vertical video */
         .rotated-wrapper {
-            width: 320px;
-            height: 570px;
+            width: 420px;
+            height: 700px;
         
             display: flex;
             justify-content: center;
             align-items: center;
-        
+
+            margin: 0 auto;
             overflow: hidden;
         }
         
         .rotated-video {
-            width: 570px;
-            height: 320px;
+            width: 700px;
+            height: auto;
         
             transform: rotate(-90deg);
+            transform: center center;
         
             border-radius: 16px;
             background: black;
